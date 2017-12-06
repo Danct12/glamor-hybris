@@ -38,10 +38,8 @@
 #endif
 
 #include <epoxy/gl.h>
-#ifdef GLAMOR_HAS_GBM
 #define MESA_EGL_NO_X11_HEADERS
 #include <epoxy/egl.h>
-#endif
 
 #ifdef GLES_USE_HIGHP
 #define GLAMOR_DEFAULT_PRECISION \
@@ -356,10 +354,8 @@ typedef struct glamor_pixmap_private {
     GLuint pbo;
     RegionRec prepare_region;
     Bool prepared;
-#ifdef GLAMOR_HAS_GBM
     EGLImageKHR image;
     Bool used_modifiers;
-#endif
     /** block width of this large pixmap. */
     int block_w;
     /** block height of this large pixmap. */

@@ -27,7 +27,7 @@
  *
  */
 
-#include "dix-config.h"
+#include "config.h"
 
 #define GLAMOR_FOR_XORG
 #include <unistd.h>
@@ -223,6 +223,7 @@ glamor_egl_create_textured_pixmap_from_gbm_bo(PixmapPtr pixmap,
                                               struct gbm_bo *bo,
                                               Bool used_modifiers)
 {
+#ifdef GLAMOR_HAS_GBM
     ScreenPtr screen = pixmap->drawable.pScreen;
     ScrnInfoPtr scrn = xf86ScreenToScrn(screen);
     struct glamor_screen_private *glamor_priv =
@@ -251,6 +252,9 @@ glamor_egl_create_textured_pixmap_from_gbm_bo(PixmapPtr pixmap,
 
  done:
     return ret;
+#else
+    return FALSE;
+#endif
 }
 
 static void
@@ -386,6 +390,7 @@ glamor_gbm_bo_from_pixmap_internal(ScreenPtr screen, PixmapPtr pixmap)
                          pixmap_priv->image, 0);
 }
 
+#ifdef GLAMOR_HAS_GBM
 struct gbm_bo *
 glamor_gbm_bo_from_pixmap(ScreenPtr screen, PixmapPtr pixmap)
 {
@@ -394,6 +399,7 @@ glamor_gbm_bo_from_pixmap(ScreenPtr screen, PixmapPtr pixmap)
 
     return glamor_gbm_bo_from_pixmap_internal(screen, pixmap);
 }
+#endif
 
 int
 glamor_egl_fds_from_pixmap(ScreenPtr screen, PixmapPtr pixmap, int *fds,
