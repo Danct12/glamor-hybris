@@ -1,9 +1,8 @@
 noinst_LTLIBRARIES = libglamor.la libglamor_egl_stubs.la
-module_LTLIBRARIES = libglamoreglhybris.la
 
 libglamor_la_LIBADD = $(GLAMOR_LIBS)
 
-AM_CFLAGS = $(CWARNFLAGS) $(XORG_CFLAGS) $(GLAMOR_CFLAGS)
+AM_CFLAGS = $(CWARNFLAGS) $(DIX_CFLAGS) $(GLAMOR_CFLAGS)
 
 libglamor_la_SOURCES = \
 	glamor.c \
@@ -50,29 +49,14 @@ libglamor_la_SOURCES = \
 	glamor_sync.c \
 	glamor.h
 
-if GLAMOR_XV
+if XV
 libglamor_la_SOURCES += \
 	glamor_xv.c
 endif
 
 libglamor_egl_stubs_la_SOURCES = \
 	glamor_egl_stubs.c \
+	glamor_egl_ext.h \
 	glamor_egl.h
-
-libglamoreglhybris_la_SOURCES = \
-	glamor_egl.c \
-	glamor_eglmodule.c \
-	glamor_xf86_xv.c \
-	$()
-
-libglamoreglhybris_la_LDFLAGS = \
-	-avoid-version \
-	$(GBM_LIBS) \
-	-lepoxy \
-	$()
-
-libglamoreglhybris_la_LIBADD = \
-	libglamor.la \
-	$()
 
 sdk_HEADERS = glamor.h

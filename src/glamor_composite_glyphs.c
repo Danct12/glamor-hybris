@@ -285,9 +285,6 @@ glamor_glyphs_flush(CARD8 op, PicturePtr src, PicturePtr dst,
         prog++;
     }
 
-    // workround the lack of glyphs for firefox.
-    glamor_flush();
-
     glDisable(GL_SCISSOR_TEST);
 
     if (glamor_glyph_use_130(glamor_priv)) {
