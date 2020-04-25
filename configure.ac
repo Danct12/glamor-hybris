@@ -72,9 +72,9 @@ AC_ARG_ENABLE(glamor-gles2,         AS_HELP_STRING([--enable-glamor-gles2], [Bui
 AC_MSG_RESULT([$GLAMOR_GLES2])
 
 AC_MSG_CHECKING([whether to include GLAMOR Xv support])
-AC_ARG_ENABLE(xv,         AS_HELP_STRING([--disable-xv], [Disable glamor Xv (default: enabled)]), [GLAMOR_XV="$enableval"], [GLAMOR_XV=yes])
-AC_MSG_RESULT([$GLAMOR_XV])
-AM_CONDITIONAL([GLAMOR_XV], [test "x$GLAMOR_XV" != xno])
+AC_ARG_ENABLE(xv,         AS_HELP_STRING([--disable-xv], [Disable glamor Xv (default: enabled)]), [XV="$enableval"], [XV=yes])
+AC_MSG_RESULT([$XV])
+AM_CONDITIONAL([XV], [test "x$XV" != xno])
 
 AC_MSG_CHECKING([whether to enable DEBUG])
 AC_ARG_ENABLE(debug,         AS_HELP_STRING([--enable-debug], [Build debug version glamor (default: no)]), [DEBUG="$enableval"], [DEBUG=no])
@@ -98,8 +98,8 @@ fi
 AC_SUBST([GLAMOR_GL_CFLAGS])
 
 AM_CONDITIONAL([GLAMOR_GLES2], [test "x$GLAMOR_GLES2" = xyes])
-if test "x$GLAMOR_XV" = xyes; then
-   AC_DEFINE(GLAMOR_XV,1,[Build Xv support])
+if test "x$XV" = xyes; then
+   AC_DEFINE(XV,1,[Build Xv support])
 fi
 
 # Store the list of server defined optional extensions in REQUIRED_MODULES
