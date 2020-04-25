@@ -44,7 +44,7 @@ XORG_DEFAULT_OPTIONS
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-AH_TOP([#include "xorg-server.h"])
+AH_TOP([#include <xorg-server.h>])
 
 # Define a configure option for an alternate module directory
 AC_ARG_WITH(xorg-module-dir,
@@ -56,7 +56,7 @@ AC_ARG_WITH(xorg-module-dir,
 AC_SUBST(moduledir)
 
 # X Server SDK location is required to install drihybris header file
-sdkdir=`$PKG_CONFIG --variable=sdkdir xorg-server`
+sdkdir=`pkgconf --variable=sdkdir xorg-server`
 AC_SUBST([sdkdir])
 
 LIBDRM="libdrm >= 2.4.23"
